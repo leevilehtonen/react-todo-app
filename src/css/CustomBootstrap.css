@@ -1,0 +1,11 @@
+.card-header {
+    background-color: #333;
+}
+
+.card-footer {
+  border-top: none;
+}
+
+.list-group-item:hover{
+  background:#f7f7f9;
+}
