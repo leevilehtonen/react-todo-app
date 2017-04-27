@@ -1,6 +1,5 @@
 {
   "name": "react-todo-app",
-  "homepage": "http://leevilehtonen.com/react-todo-app",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
