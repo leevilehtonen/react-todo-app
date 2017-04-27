@@ -28,8 +28,7 @@ class Todos extends Component {
         firebaseRef.child(todoToRemove.key).remove();
     }
 
-    
-    componentWillMount() {
+    componentDidMount() {
         firebaseRef.on('value', function (snapshot) {
             var todos = [];
             snapshot.forEach(function(childSnapshot) {
