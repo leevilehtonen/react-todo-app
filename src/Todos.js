@@ -3,6 +3,11 @@ import React, { Component } from 'react';
 import TodoList from './TodoList';
 import AddTodo from './AddTodo';
 
+import firebase from './Firebase';
+
+
+const firebaseRef = firebase.database().ref('todos');
+
 class Todos extends Component {
 
     constructor(props) {
@@ -16,13 +21,30 @@ class Todos extends Component {
     }
 
     addTodo(todoToAdd) {
-        this.setState({ todos: this.state.todos.concat(todoToAdd) })
+        firebaseRef.push({todo: todoToAdd});
     }
 
     removeTodo(todoToRemove) {
-        var array = this.state.todos.filter(todo => { return todoToRemove !== todo });
-        this.setState({todos: array});
+        firebaseRef.child(todoToRemove.key).remove();
     }
+
+    
+    componentWillMount() {
+        firebaseRef.on('value', function (snapshot) {
+            var todos = [];
+            snapshot.forEach(function(childSnapshot) {
+                var todo = childSnapshot.val();
+                todo['key'] = childSnapshot.key;
+                todos.push(todo);
+            }.bind(this));
+            this.setState({todos: todos});
+        }.bind(this));
+    }
+
+    componentWillUnmount() {
+        firebaseRef.off();
+    }
+      
 
     render() {
         return (

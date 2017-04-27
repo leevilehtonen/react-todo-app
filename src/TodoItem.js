@@ -12,7 +12,7 @@ class TodoItem extends Component {
     }
     render() {
         return (
-            <li className="list-group-item justify-content-between"><span>{this.props.todo}</span>
+            <li className="list-group-item justify-content-between"><span>{this.props.todo.todo}</span>
                 <button type="button" className="btn btn-danger btn-sm" onClick={this.removeTodo} >X</button>
             </li>
         );

@@ -9,7 +9,7 @@ class TodoList extends Component {
         return (
             <ul className="list-group list-group-flush"  >
                 {this.props.todos.map((todo, index) => {
-                    return <TodoItem todo={todo} key={index} onRemove={this.props.onRemove} />
+                    return <TodoItem todo={todo} key={todo.key} onRemove={this.props.onRemove} />
                 })}
             </ul>
         );
